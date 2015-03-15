@@ -12,7 +12,7 @@ window.onload = function() {
                         .setWidth(500)
                         .setHeight(600)
                         .setDomain([0,100])
-                        .setPadding(2)
+                        .setPadding(10)
                         .setTransitionTime(400);
 
     bar.finishSetup(document.getElementById("target2"));

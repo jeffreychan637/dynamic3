@@ -57,7 +57,6 @@ dynamic3.Graph.prototype = {
     finishSetup: function(node) {
         this.ctx = d3.select(node)
             .append('svg:svg')
-            //.attr('class', opts.class)
             .attr('width', this.options.width)
             .attr('height', this.options.height)
     }
@@ -101,8 +100,6 @@ dynamic3.CircleGraph.prototype = {
              .attr('r', r)
              .attr('cx', cx)
              .attr('cy', cy)
-
-        //chart.exit().remove()
     }
 };
 
@@ -119,36 +116,31 @@ dynamic3.BarGraph.prototype = {
     },
     
     update: function(data) {
+        console.assert(Array.isArray(data), "Data elements to Bar Graph should be an array.");
         var oldData = this.data;
         if (oldData) {
-            console.assert(oldData.length == data.length)
+            console.assert(oldData.length === data.length, "Data lengths shouldn't change");
         }
         this.data = data;
         
         var width = d3.scale.linear().domain(this.options.domain || [0, 1]).range([0, this.options.width]);
         var padding = this.options.padding || 2;
-        var height = this.options.height / data.length - padding;
+        var height = this.options.height / data.length - padding - padding / data.length;
 
         var chart = this.ctx.selectAll('rect')
                         .data(data);
     
-                        chart.enter().append('svg:rect')
-                        .attr('x', function(d, i) {return 0})
-                        .attr('y', function(d, i) {return i * height + (i + 1) * padding})
-                        .attr("width", width)
-                        .attr("height", height)
-        
-        
-        //var cx = this.options.width / 2;
-        //var cy = this.options.height / 2;
+        chart.enter().append('svg:rect')
+                     .attr('x', 0)
+                     .attr('y', function(d, i) {return i * height + (i + 1) * padding})
+                     .attr("width", width)
+                     .attr("height", height)
         
         this.__updateStyles(chart)
 
         chart.transition()
              .duration(this.options.transitionTime)
              .attr('width', width)
-
-        //chart.exit().remove()
     }
 };
 
