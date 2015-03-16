@@ -1,3 +1,3 @@
 # dynamic3
 
-[View Demo](www.jeffreychan637.github.io)
+[View Demo](http://jeffreychan637.github.io)
