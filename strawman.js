@@ -1,8 +1,8 @@
 window.onload = function() {
     var graph = dynamic3.createGraph('Circle')
-                        .setBackgroundColor('white')
-                        .setBorderColor('green')
-                        .setBorderWidth('2px')
+                        .setBackgroundColor('blue')
+                        .setBorderColor('yellow')
+                        .setBorderWidth(1)
                         .setWidth(500)
                         .setHeight(500)
                         .setDomain([0,100])
@@ -13,7 +13,8 @@ window.onload = function() {
                         .setHeight(600)
                         .setDomain([0,100])
                         .setPadding(10)
-                        .setTransitionTime(400);
+                        .setTransitionTime(400)
+                        .setBackgroundColor('red');
 
     bar.finishSetup(document.getElementById("target2"));
     graph.finishSetup(document.getElementById("target")); // This will connect our d3 graph with the dom element.
@@ -25,7 +26,7 @@ window.onload = function() {
     // Note, this data can be anything. This is just something random as an example.
     function loopWithRandomDynamicData() {
         var data = Math.random() * 100; // random number between 0 and 100
-        graph.update(data); // This will be the heart of our API, something that just updates from one state to the next.
+//        graph.update(data); // This will be the heart of our API, something that just updates from one state to the next.
         bardata = [];
         for (var i = 0; i < 10; i += 1) {
             bardata[i] = Math.random() * 100;
@@ -34,6 +35,30 @@ window.onload = function() {
         var waitTime = Math.random() * 3000; // wait between 0 and 3 seconds for next data point.
         setTimeout(loopWithRandomDynamicData, waitTime)
     }
-
+    
+    function getPingStatisticsData() {
+        var startTime = Date.now();
+        var totalTime;
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function() {
+            if (request.readyState == 4) {
+                totalTime = Date.now() - startTime;
+                if (totalTime > 5000) {
+                    totalTime = 5000;   
+                }
+                graph.update(totalTime);
+                getPingStatisticsData();
+            }
+            
+        }
+        if (request) {
+            request.open('GET', 'http://www.google.com', true);
+            request.setRequestHeader("Access-Control-Allow-Origin", "*");
+            request.send();
+        } else {
+            console.log("wtf");
+        }
+    }
+    getPingStatisticsData();
     loopWithRandomDynamicData();
 }
