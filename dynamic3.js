@@ -115,6 +115,16 @@ dynamic3.BarGraph.prototype = {
         return this;
     },
     
+    setText: function(f) {
+        this.options.text = f;
+        return this;   
+    },
+    
+    setTextColor: function(color) {
+        this.options.textColor = color;
+        return this;
+    },
+    
     update: function(data) {
         console.assert(Array.isArray(data), "Data elements to Bar Graph should be an array.");
         var oldData = this.data;
@@ -137,7 +147,21 @@ dynamic3.BarGraph.prototype = {
                      .attr("height", height)
         
         this.__updateStyles(chart)
-
+        
+        if (this.options.text) {
+            var textChart = this.ctx.selectAll('text')
+                            .data(data);
+            textChart.enter().insert('svg:text')
+                             .attr('x', padding)
+                             .attr('y', function(d, i) {return i * height + height/2 + (i + 1) * padding})
+                             .attr('fill', this.options.textColor || 'black')
+                             .text(this.options.text);
+            textChart.transition()
+                     .duration(this.options.transitionTime)
+                     .text(this.options.text);
+        }
+        
+                    
         chart.transition()
              .duration(this.options.transitionTime)
              .attr('width', width)
