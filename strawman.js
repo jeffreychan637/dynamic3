@@ -2,13 +2,15 @@ window.onload = function() {
     var maxCirculeGraphDomain = 1;
     var maxBarGraphDomain = 250;
     var graph = dynamic3.createGraph('Circle')
-                        .setBackgroundColor('blue')
-                        .setBorderColor('yellow')
-                        .setBorderWidth(1)
+                        .setBackgroundColor('#ca454e')
+                        .setBorderColor('#8e3036')
+                        .setBorderWidth(4)
                         .setWidth(500)
                         .setHeight(500)
                         .setDomain([0, maxCirculeGraphDomain])
-                        .setTransitionTime(400); // 200ms transition time from state to state.
+                        .setTransitionTime(400) // 200ms transition time from state to state.
+                        .setText(function(d) { return d + " BTC"; })
+                        .setTextColor('black');
     
     var bar = dynamic3.createGraph('Bar')
                         .setWidth(500)
@@ -28,23 +30,6 @@ window.onload = function() {
     // actually be helpful or not until we actually start hacking on the library. But this is a simple enough
     // constraint to begin with. After finishSetup, the only function you can call on a graph is 'update()'
 
-    /*
-    // Note, this data can be anything. This is just something random as an example.
-    function loopWithRandomDynamicData() {
-        var data = Math.random() * 100; // random number between 0 and 100
-        graph.update(data); // This will be the heart of our API, something that just updates from one state to the next.
-        bardata = [];
-        for (var i = 0; i < 10; i += 1) {
-            bardata[i] = Math.random() * 100 | 0;
-        }
-        bar.update(bardata);
-        var waitTime = Math.random() * 3000; // wait between 0 and 3 seconds for next data point.
-        setTimeout(loopWithRandomDynamicData, waitTime)
-    }
-    
-    loopWithRandomDynamicData();
-    */
-
     // Get exhange rates from various currencies to 1 bitcoin.
     function getExchangeRates(callback) {
         var exchangeRateURL = "https://blockchain.info/ticker";
@@ -52,7 +37,6 @@ window.onload = function() {
         httpRequest.open('GET', exchangeRateURL, false); // synchronous.
         httpRequest.send();
         if (httpRequest.status === 200) {
-           console.log(httpRequest.responseText);
            return JSON.parse(httpRequest.responseText);
         }
 

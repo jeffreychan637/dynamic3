@@ -47,6 +47,16 @@ dynamic3.Graph.prototype = {
         this.options.domain = domain;
         return this;
     },
+
+    setText: function(f) {
+        this.options.text = f;
+        return this;   
+    },
+    
+    setTextColor: function(color) {
+        this.options.textColor = color;
+        return this;
+    },
     
     __updateStyles: function(chart) {
         chart.style('fill', this.options.backgroundColor);
@@ -100,6 +110,20 @@ dynamic3.CircleGraph.prototype = {
              .attr('r', r)
              .attr('cx', cx)
              .attr('cy', cy)
+
+        if (this.options.text) {
+            var textChart = this.ctx.selectAll('text')
+                            .data([data]);
+            textChart.enter().insert('svg:text')
+                             .attr('x', 25)
+                             .attr('y', 25)
+                             .attr('fill', this.options.textColor || 'black')
+                             .text(this.options.text);
+
+            textChart.transition()
+                     .duration(this.options.transitionTime)
+                     .text(this.options.text);
+        }
     }
 };
 
@@ -112,16 +136,6 @@ dynamic3.BarGraph.prototype = {
     
     setPadding: function(padding) {
         this.options.padding = padding;
-        return this;
-    },
-    
-    setText: function(f) {
-        this.options.text = f;
-        return this;   
-    },
-    
-    setTextColor: function(color) {
-        this.options.textColor = color;
         return this;
     },
     
