@@ -5,7 +5,7 @@ window.onload = function() {
                         .setBorderWidth(1)
                         .setWidth(500)
                         .setHeight(500)
-                        .setDomain([0,100])
+                        .setDomain([0, 1]) // 0 to 2 bitcoin
                         .setTransitionTime(400); // 200ms transition time from state to state.
     
     var bar = dynamic3.createGraph('Bar')
@@ -25,6 +25,7 @@ window.onload = function() {
     // actually be helpful or not until we actually start hacking on the library. But this is a simple enough
     // constraint to begin with. After finishSetup, the only function you can call on a graph is 'update()'
 
+    /*
     // Note, this data can be anything. This is just something random as an example.
     function loopWithRandomDynamicData() {
         var data = Math.random() * 100; // random number between 0 and 100
@@ -39,4 +40,26 @@ window.onload = function() {
     }
     
     loopWithRandomDynamicData();
+    */
+
+    function receiveLatestData(data) {
+       var bitcoinValue = data.x.value * (1e-8);
+       bitcoinValue = Math.min(bitcoinValue, 1);
+       graph.update(bitcoinValue);
+    }
+
+    try {
+        var websocketURL = "wss://ws.blockchain.info/inv";
+        var webSocket = new WebSocket(websocketURL);
+        webSocket.onmessage = function(event) {
+            receiveLatestData(JSON.parse(event.data));
+            //console.log(JSON.stringify(event.data, undefined, 2));
+        };
+        webSocket.onopen = function() {
+            webSocket.send('{"op":"set_tx_mini"}{"op":"unconfirmed_sub"}{"op":"blocks_sub"}')
+        };
+    } catch(e) {
+        console.error(e);
+    }
+    
 }
