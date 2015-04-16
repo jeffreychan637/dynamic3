@@ -27,6 +27,7 @@ code {
     margin-bottom: 0px;
     background-color: #17437F;
     color: white;
+    background: linear-gradient(#625DAA, #DA8CB9);
     background-image: url(skyline-MarioCutroneo.jpg);
     background-position: top center;
     background-repeat: no-repeat;
