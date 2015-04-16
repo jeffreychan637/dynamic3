@@ -1,0 +1,82 @@
+a {
+    color: #4134FF;
+}
+
+code {
+ background-color: inherit;
+ color: white;
+}
+
+
+.nav {
+/*    opacity: 50%;*/
+    backface-visibility: visible;
+}
+    
+
+.download-nav {
+    color: #625DAA !important;
+}
+
+.download-nav:hover {
+    color: #3F3899 !important;
+}
+
+.title-con {
+    text-align: center;
+    margin-bottom: 0px;
+    background-color: #17437F;
+    color: white;
+    background-image: url(skyline-MarioCutroneo.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.title {
+    font-size: 150px !important;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.graph-description {
+    font-size: 20px;   
+}
+
+.code {
+    text-align: left;
+}
+
+pre.prettyprint {
+    padding: 5px !important;
+}
+.graph {
+    text-align: center;   
+}
+
+.colored-blocks {
+    text-align: center;
+    background: linear-gradient(#625DAA, #DA8CB9);
+    color: white;
+    margin-bottom: 0px;
+}
+
+.section-title {
+    font-size: 72px;
+}
+
+.download-text {
+    font-size: 18px !important;
+}
+
+.btn-primary {
+    background-color: #625DAA;
+    border-color: #5F3288;
+    background-image: none;
+}
+
+.btn-primary:hover {
+    background-color: #3F3899;
+    background-image: none;
+}
