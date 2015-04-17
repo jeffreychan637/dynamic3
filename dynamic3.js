@@ -95,7 +95,8 @@ dynamic3.CircleGraph.prototype = {
 
         var width = parseFloat(this.options.width);
         var height = parseFloat(this.options.height);
-        var r = d3.scale.linear().domain(this.options.domain || [0, 1]).range([5, width / 2]);
+        var border = this.options.borderWidth ? parseFloat(this.options.borderWidth) : 0;
+        var r = d3.scale.linear().domain(this.options.domain || [0, 1]).range([5, width / 2 - border]);
         var cx = width / 2;
         var cy = height / 2;
 

@@ -13,8 +13,8 @@ window.onload = function() {
                         .setTextColor('black');
     
     var bar = dynamic3.createGraph('Bar')
-                        .setWidth('500px')
-                        .setHeight('600px')
+                        .setWidth('496px')
+                        .setHeight('596px')
                         .setDomain([0, maxBarGraphDomain])
                         .setPadding(10)
                         .setTransitionTime(400)
