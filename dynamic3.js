@@ -159,9 +159,9 @@ dynamic3.BarGraph.prototype = {
             console.assert(oldData.length === data.length, "Data lengths shouldn't change");
         }
         this.data = data;
-        
+
         var padding = this.options.padding || 2;
-        
+
         var x, y, width, height;
         if (this.options.vertical) {
             width = parseFloat(this.options.width) / data.length - padding - padding / data.length;
@@ -185,7 +185,7 @@ dynamic3.BarGraph.prototype = {
 
         var chart = this.ctx.selectAll('rect')
                         .data(data);
-        
+
         chart.enter().append('svg:rect')
                      .attr('x', x)
                      .attr('y', y)
@@ -193,11 +193,11 @@ dynamic3.BarGraph.prototype = {
                      .attr("height", height)
         
         this.__updateStyles(chart)
-        
+
         if (this.options.text) {
             var textChart = this.ctx.selectAll('text')
                             .data(data);
-            
+
             var textX, textY;
             if (this.options.vertical) {
                 textX = function(d, i) {
@@ -211,7 +211,7 @@ dynamic3.BarGraph.prototype = {
                     /* Use (i + 1) to account for initial padding. Add height/2 to put label in middle of bar. */
                 }
             }
-            
+
             textChart.enter().insert('svg:text')
                              .attr('x', textX)
                              .attr('y', textY)
@@ -222,8 +222,8 @@ dynamic3.BarGraph.prototype = {
                      .duration(this.options.transitionTime)
                      .text(this.options.text);
         }
-        
-                    
+
+
         chart.transition()
              .duration(this.options.transitionTime)
              .attr('width', width)
@@ -233,12 +233,95 @@ dynamic3.BarGraph.prototype = {
     }
 };
 
+dynamic3.SlidingBarGraph = function() { 
+    dynamic3.Graph.call(this);
+};
 
-dynamic3.__ctors = {
+dynamic3.SlidingBarGraph.prototype = {
+    __proto__: dynamic3.Graph.prototype,
+
+    setNumberOfBars: function(num) {
+        this.options.numberOfBars = num;
+        return this;
+    },
+
+    update: function(data) {
+
+        //data = data.slice( -this.options.numberOfBars ) //grab the last (this.numberOfBars) number of points in our array
+        data = data.slice(0, this.options.numberOfBars); //grab the last (this.numberOfBars) number of points in our array
+        //data = data.reverse();
+
+        var separator = 4;
+        
+        var height = parseFloat(this.options.height);
+        var width = parseFloat(this.options.width);
+        var barWidth;
+        //ensure separator isn't too big compared to barWidth. i.e barWidth must be at least 1 px
+        ;(function fixBarWidth() {
+            barWidth = (width - (separator * data.length)) / data.length;
+            barWidth = Math.floor(barWidth)
+            if (barWidth < 1) {
+                separator = Math.floor(separator/1.25);
+                fixBarWidth();
+            }
+        })();
+        
+        var yScale = d3.scale.linear()
+                   .domain(this.options.domain)
+                   .range([height * 0.05, height]); //5 percent of height is minimum size
+
+        var toAll = {
+            'x' : function(d, i) { return i*barWidth + i*separator;}
+            , 'y' : function (d) { return height - yScale(d.val); }
+            , 'width' : function () { return barWidth; }
+            , 'height' : function(d) { return yScale(d.val) }  //TODO : look into anti-aliasing prevention
+        };
+
+        var chart = this.ctx.selectAll('rect')
+                   .data(data, function(d) { return d.uid })
+
+        //d.val === UID for data. this is crucual. check out => http://mbostock.github.com/d3/tutorial/bar-2.html
+        chart.enter().append('svg:rect')
+             .attr('x', function(d, i) { return toAll.x(d, i - 1); }) //slide in from left
+             .attr('y', toAll.y)
+             .attr('width', toAll.width)
+             .attr('height', toAll.height);
+
+        this.__updateStyles(chart);
+
+        chart.transition()
+             .duration(this.options.transitionTime)
+             .ease("linear")
+             .attr('x', toAll.x)
+             .attr('y', toAll.y)
+             .attr('height', toAll.height)
+              //'width' is necessary b/c when the graph is first started, we increase the number of data points.
+             .attr('width', toAll.width)
+
+        chart.exit()
+             .transition()
+             .duration(this.options.transitionTime)
+             .ease("linear")
+             //basically, all of this is a swoop out
+             //.attr('transform', 'rotate(' + 90 + ')') //in degrees
+             .attr('x', 
+                     function(d, i) { 
+                         //return toAll.x(d, i - 1); 
+                         return toAll.x(d, data.length); 
+                     }) //slide out to right
+             //.attr('y', height / 4) //quarte the way up
+             //.attr('height', function(d, i) { return toAll.height(d, i) * 0.1 })
+             .remove()
+
+       }
+};
+
+dynamic3.__constructors = {
     'Circle': dynamic3.CircleGraph,
-    'Bar': dynamic3.BarGraph
+    'BarGraph': dynamic3.BarGraph,
+    'SlidingBarGraph': dynamic3.SlidingBarGraph
 };
 
 dynamic3.createGraph = function(str) {
-    return new dynamic3.__ctors[str];
+    return new dynamic3.__constructors[str];
 };

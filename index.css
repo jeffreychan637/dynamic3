@@ -93,7 +93,7 @@ pre.prettyprint {
     background-color: white;
 }
 
-#bar-graph {
+#bar-graph, #animating-bar-graph {
     display:block;
     height:600px;
     width: 500px;
@@ -112,6 +112,7 @@ pre.prettyprint {
     background-color:white;
     */
 }
+
 #circle-graph {
     display:block; 
     height:500px;
