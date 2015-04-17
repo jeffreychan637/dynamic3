@@ -1,3 +1,5 @@
+"use strict";
+
 window.onload = function() {
     var maxCirculeGraphDomain = 1;
     var maxBarGraphDomain = 250;
@@ -17,6 +19,7 @@ window.onload = function() {
                         .setHeight('596px')
                         .setDomain([0, maxBarGraphDomain])
                         .setPadding(10)
+                        .setBarGraphOrientation("vertical")
                         .setTransitionTime(400)
                         .setBackgroundColor('#496dff')
                         .setText(extractTextForCurrencies)
