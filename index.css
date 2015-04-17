@@ -83,6 +83,9 @@ pre.prettyprint {
 
 .dropdown {
     text-align: left;
+    display: table-cell;
+    padding-right: 30px;
+    padding-left: 30px;
 }
 
 .dropdown-toggle {
@@ -93,12 +96,14 @@ pre.prettyprint {
 #bar-graph {
     display:block;
     height:600px;
-    width:500px;
+    width: 500px;
     border-style: solid;
     border-color: black;
     border-width: 1px; 
     font-family: Helvetica, Arial;
     font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
     /*
     display:block; 
@@ -112,4 +117,5 @@ pre.prettyprint {
     height:500px;
     width:500px;
     background-color:white;
+    margin-bottom: 10px;
 }
