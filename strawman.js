@@ -13,8 +13,8 @@ window.onload = function() {
                         .setTextColor('black');
     
     var bar = dynamic3.createGraph('Bar')
-                        .setWidth(500)
-                        .setHeight(600)
+                        .setWidth('500px')
+                        .setHeight('600px')
                         .setDomain([0, maxBarGraphDomain])
                         .setPadding(10)
                         .setTransitionTime(400)
@@ -22,8 +22,8 @@ window.onload = function() {
                         .setText(extractTextForCurrencies)
                         .setTextColor('black');
 
-    bar.finishSetup(document.getElementById("target2"));
-    graph.finishSetup(document.getElementById("target")); // This will connect our d3 graph with the dom element.
+    bar.finishSetup(document.getElementById("bar-graph"));
+    graph.finishSetup(document.getElementById("circle-graph")); // This will connect our d3 graph with the dom element.
 
     // For now, it may be simpler to impose the rule that all styles must be decided before this finishSetup function is called.
     // Like the above setup would maybe throw an error after we've already "finished our setup". I'm not sure if this will

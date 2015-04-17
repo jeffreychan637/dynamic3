@@ -67,8 +67,8 @@ dynamic3.Graph.prototype = {
     finishSetup: function(node) {
         this.ctx = d3.select(node)
             .append('svg:svg')
-            .attr('width', this.options.width)
-            .attr('height', this.options.height)
+            .attr('width', parseFloat(this.options.width))
+            .attr('height', parseFloat(this.options.height))
     }
 };
 
@@ -93,10 +93,11 @@ dynamic3.CircleGraph.prototype = {
         var chart = this.ctx.selectAll('circle')
                         .data([data]);
 
-        var width = this.options.width ;
-        var r = d3.scale.linear().domain(this.options.domain || [0, 1]).range([5, this.options.width / 2]);
-        var cx = this.options.width / 2;
-        var cy = this.options.height / 2;
+        var width = parseFloat(this.options.width);
+        var height = parseFloat(this.options.height);
+        var r = d3.scale.linear().domain(this.options.domain || [0, 1]).range([5, width / 2]);
+        var cx = width / 2;
+        var cy = height / 2;
 
         chart.enter().append('svg:circle')
              .attr('r', r)
@@ -147,9 +148,10 @@ dynamic3.BarGraph.prototype = {
         }
         this.data = data;
         
-        var width = d3.scale.linear().domain(this.options.domain || [0, 1]).range([0, this.options.width]);
+        //this.options.width
+        var width = d3.scale.linear().domain(this.options.domain || [0, 1]).range([0, parseFloat(this.options.width)]);
         var padding = this.options.padding || 2;
-        var height = this.options.height / data.length - padding - padding / data.length;
+        var height = parseFloat(this.options.height) / data.length - padding - padding / data.length;
 
         var chart = this.ctx.selectAll('rect')
                         .data(data);
