@@ -8,6 +8,7 @@ dynamic3.Graph = function() {
 
 dynamic3.Graph.prototype = {
     constructor: dynamic3.Graph,
+
     setBackgroundColor: function(color) {
         this.options.backgroundColor = color;
         return this;
@@ -129,7 +130,7 @@ dynamic3.CircleGraph.prototype = {
     }
 };
 
-dynamic3.BarGraph = function() { 
+dynamic3.BarGraph = function() {
     dynamic3.Graph.call(this);
 }
 
@@ -141,6 +142,16 @@ dynamic3.BarGraph.prototype = {
         return this;
     },
     
+    setBarGraphOrientation: function(orientation) {
+        this.options.vertical = true;
+        if (orientation == "horizontal") {
+            this.options.vertical = false;
+        } else if (orientation != "vertical") {
+            console.error("Orientation must be horzontal or vertical");
+        }
+        return this;
+    },
+
     update: function(data) {
         console.assert(Array.isArray(data), "Data elements to Bar Graph should be an array.");
         var oldData = this.data;
@@ -149,17 +160,35 @@ dynamic3.BarGraph.prototype = {
         }
         this.data = data;
         
-        //this.options.width
-        var width = d3.scale.linear().domain(this.options.domain || [0, 1]).range([0, parseFloat(this.options.width)]);
         var padding = this.options.padding || 2;
-        var height = parseFloat(this.options.height) / data.length - padding - padding / data.length;
+        
+        var x, y, width, height;
+        if (this.options.vertical) {
+            width = parseFloat(this.options.width) / data.length - padding - padding / data.length;
+            var canvasHeight = parseFloat(this.options.height);
+            height = d3.scale.linear().domain(this.options.domain || [0, 1]).range([0, canvasHeight]);
+            y = function(d) {
+                return canvasHeight - height(d);
+            };
+            x = function(d, i) {
+                return i * width + (i + 1) * padding;
+            };
+        } else {
+            var canvasWidth = parseFloat(this.options.width);
+            width = d3.scale.linear().domain(this.options.domain || [0, 1]).range([0, canvasWidth]);
+            height = parseFloat(this.options.height) / data.length - padding - padding / data.length;
+            x = 0;
+            y = function(d, i) {
+                return i * height + (i + 1) * padding;
+            };
+        }   
 
         var chart = this.ctx.selectAll('rect')
                         .data(data);
-    
+        
         chart.enter().append('svg:rect')
-                     .attr('x', 0)
-                     .attr('y', function(d, i) {return i * height + (i + 1) * padding})
+                     .attr('x', x)
+                     .attr('y', y)
                      .attr("width", width)
                      .attr("height", height)
         
@@ -168,11 +197,27 @@ dynamic3.BarGraph.prototype = {
         if (this.options.text) {
             var textChart = this.ctx.selectAll('text')
                             .data(data);
+            
+            var textX, textY;
+            if (this.options.vertical) {
+                textX = function(d, i) {
+                    return i * width + (i + 1) * padding;
+                }
+                textY = padding;
+            } else {
+                textX = padding;
+                textY = function(d, i) {
+                    return i * height + height/2 + (i + 1) * padding;
+                    /* Use (i + 1) to account for initial padding. Add height/2 to put label in middle of bar. */
+                }
+            }
+            
             textChart.enter().insert('svg:text')
-                             .attr('x', padding)
-                             .attr('y', function(d, i) {return i * height + height/2 + (i + 1) * padding})
+                             .attr('x', textX)
+                             .attr('y', textY)
                              .attr('fill', this.options.textColor || 'black')
                              .text(this.options.text);
+
             textChart.transition()
                      .duration(this.options.transitionTime)
                      .text(this.options.text);
@@ -182,6 +227,9 @@ dynamic3.BarGraph.prototype = {
         chart.transition()
              .duration(this.options.transitionTime)
              .attr('width', width)
+             .attr('height', height)
+             .attr('y', y)
+             .attr('x', x);
     }
 };
 
