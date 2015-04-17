@@ -80,3 +80,12 @@ pre.prettyprint {
     background-color: #3F3899;
     background-image: none;
 }
+
+.dropdown {
+    text-align: left;
+}
+
+.dropdown-toggle {
+    background-image: none;
+    background-color: white;
+}
