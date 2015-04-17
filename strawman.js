@@ -35,6 +35,7 @@ window.onload = function() {
         var exchangeRateURL = "https://blockchain.info/ticker";
         var httpRequest = new XMLHttpRequest();
         httpRequest.open('GET', exchangeRateURL, false); // synchronous.
+        httpRequest.setRequestHeader('Accept', 'application/json');
         httpRequest.send();
         if (httpRequest.status === 200) {
            return JSON.parse(httpRequest.responseText);
