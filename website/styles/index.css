@@ -114,8 +114,8 @@ pre.prettyprint {
 }
 
 #bar-graph, #animating-bar-graph {
-    display:block;
-    height:600px;
+    display: block;
+    height: 500px;
     width: 500px;
     border-style: solid;
     border-color: black;

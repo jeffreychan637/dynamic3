@@ -16,7 +16,7 @@ window.onload = function() {
     
     var bar = dynamic3.createGraph('BarGraph')
                         .setWidth('496px')
-                        .setHeight('596px')
+                        .setHeight('496px')
                         .setDomain([0, maxBarGraphDomain])
                         .setPadding(10)
                         .setTransitionTime(400)
@@ -28,7 +28,7 @@ window.onload = function() {
 
     var slidingBar = dynamic3.createGraph('SlidingBarGraph')
                         .setWidth('496px')
-                        .setHeight('596px')
+                        .setHeight('496px')
                         .setDomain([0, 1])
                         .setTransitionTime(400)
                         .setBackgroundColor('#496dff')
