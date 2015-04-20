@@ -44,6 +44,13 @@ window.onload = function() {
     graph.finishSetup(document.getElementById("circle-graph")); // This will connect our d3 graph with the dom element.
     slidingBar.finishSetup(document.getElementById("animating-bar-graph")); // This will connect our d3 graph with the dom element.
 
+    $("#switch-to-vertical").click(function() {
+        bar.setBarGraphOrientation("vertical")
+    });
+    $("#switch-to-horizontal").click(function() {
+        bar.setBarGraphOrientation("horizontal")
+    });
+
     // For now, it may be simpler to impose the rule that all styles must be decided before this finishSetup function is called.
     // Like the above setup would maybe throw an error after we've already "finished our setup". I'm not sure if this will
     // actually be helpful or not until we actually start hacking on the library. But this is a simple enough
@@ -135,8 +142,7 @@ window.onload = function() {
         }
         bar.update(barData);
 
-        allBitcoinValues.unshift({val: bitcoinValue, uid: Date.now()});
-        //allBitcoinValues.push({val: bitcoinValue, uid: Date.now()});
+        allBitcoinValues.push({val: bitcoinValue, uid: Date.now()});
         slidingBar.update(allBitcoinValues);
     }
 

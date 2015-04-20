@@ -223,6 +223,9 @@ dynamic3.BarGraph.prototype = {
 
             textChart.transition()
                      .duration(this.options.transitionTime)
+                     .attr('x', textX)
+                     .attr('y', textY)
+                     .attr('fill', this.options.textColor || 'black')
                      .text(this.options.text);
         }
 
@@ -250,9 +253,8 @@ dynamic3.SlidingBarGraph.prototype = {
 
     update: function(data) {
 
-        //data = data.slice( -this.options.numberOfBars ) //grab the last (this.numberOfBars) number of points in our array
-        data = data.slice(0, this.options.numberOfBars); //grab the last (this.numberOfBars) number of points in our array
-        //data = data.reverse();
+        data = data.slice( -this.options.numberOfBars ) //grab the last (this.numberOfBars) number of points in our array
+        data = data.reverse();
 
         var separator = 4;
         
@@ -277,7 +279,7 @@ dynamic3.SlidingBarGraph.prototype = {
             'x' : function(d, i) { return i*barWidth + i*separator;}
             , 'y' : function (d) { return height - yScale(d.val); }
             , 'width' : function () { return barWidth; }
-            , 'height' : function(d) { return yScale(d.val) }  //TODO : look into anti-aliasing prevention
+            , 'height' : function(d) { return yScale(d.val) }
         };
 
         var chart = this.ctx.selectAll('rect')
@@ -299,23 +301,14 @@ dynamic3.SlidingBarGraph.prototype = {
              .attr('y', toAll.y)
              .attr('height', toAll.height)
               //'width' is necessary b/c when the graph is first started, we increase the number of data points.
-             .attr('width', toAll.width)
+             .attr('width', toAll.width);
 
         chart.exit()
              .transition()
              .duration(this.options.transitionTime)
              .ease("linear")
-             //basically, all of this is a swoop out
-             //.attr('transform', 'rotate(' + 90 + ')') //in degrees
-             .attr('x', 
-                     function(d, i) { 
-                         //return toAll.x(d, i - 1); 
-                         return toAll.x(d, data.length); 
-                     }) //slide out to right
-             //.attr('y', height / 4) //quarte the way up
-             //.attr('height', function(d, i) { return toAll.height(d, i) * 0.1 })
-             .remove()
-
+             .attr('x', function(d, i) { return toAll.x(d, data.length); }) //slide out to right
+             .remove();
        }
 };
 
