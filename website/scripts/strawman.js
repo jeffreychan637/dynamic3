@@ -30,14 +30,11 @@ window.onload = function() {
                         .setWidth('496px')
                         .setHeight('596px')
                         .setDomain([0, 1])
-                        //.setPadding(10)
                         .setTransitionTime(400)
                         .setBackgroundColor('#496dff')
                         .setNumberOfBars(8)
-                        //.setText(extractTextForCurrencies)
                         .setBorderColor('#2b2c2b')
-                        .setBorderWidth(1)
-                        //.setTextColor('black');
+                        .setBorderWidth(1);
 
     bar.finishSetup(document.getElementById("bar-graph"));
     graph.finishSetup(document.getElementById("circle-graph")); // This will connect our d3 graph with the dom element.

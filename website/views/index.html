@@ -78,7 +78,7 @@ window.onload = function() {
                         .setTransitionTime(400)
                         .setText(getLabel)
                         .setTextColor('black');
-    graph.finishSetup(document.getElementById("circle"));
+    graph.insertIntoHTMLElement(document.getElementById("circle"));
     while(true) {
         var newValue = getNextBitcoinTransaction();
         graph.update(newValue);
@@ -98,6 +98,7 @@ window.onload = function() {
                 <h1 class="section-title">Ever-changing Bar Graph</h1>
                   <div class="row">
                     <div class="col-md-6">
+                    <!--
                       <div class="dropdown">
                           <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                             0 Currencies Selected
@@ -110,6 +111,7 @@ window.onload = function() {
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">EUR</a></li>
                           </ul>
                       </div>
+                      -->
                       <div class="dropdown">
                           <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
                               <p id="graph-orientation-dropdown" style="display: inline;"> Orientation </p>
@@ -153,7 +155,7 @@ window.onload = function() {
                         .setTransitionTime(400)
                         .setBackgroundColor('#496dff')
                         .setNumberOfBars(8)
-    graph.finishSetup(document.getElementById("expand-bar"));
+    graph.insertIntoHTMLElement(document.getElementById("expand-bar"));
     while(true) {
         var newValue = getNextBitcoinTransaction();
         listOfAllBitcoinTransactions.unshift(
