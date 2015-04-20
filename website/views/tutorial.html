@@ -26,7 +26,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Dynamic3</a>
+              <a class="navbar-brand" href="./index.html">Dynamic3</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -44,49 +44,71 @@
           </div><!-- /.container-fluid -->
         </nav>
         
-        <div class="">
+        <div>
             <div class="container">
-                <h1 class="section-title tutorial-title">Ever-changing Bar Graph</h1>
-                <p>This tutorial will walk you through the Dynamic3 Ever-changing Bar Graph example where the bar values are based on randomly generated data. Here’s what it will look like:</p>
+                <h1 class="section-title tutorial-title">Ever-changing Bar Graph Tutorial</h1>
+                <p>This tutorial will walk you through the Dynamic3 Ever-changing Bar Graph example where the bar values are based on randomly generated data.</p>                 <p>Here’s what it will look like:</p>
                 <div id="tutorial-bar-graph"></div>
+                <p>Let’s start with out our HTML file:</p>
                 <pre class="prettyprint">
-    &lt;!DOCTYPE html&gt;
-    &lt;html&gt;
-        &lt;head&gt;
-            &lt;script src="http://d3js.org/d3.v3.min.js" charset="utf-8"&gt;&lt;/script&gt;
-            &lt;script src="./local/path/to/dynamic3.js"&gt;&lt;/script&gt;
-        &lt;/head&gt;
-        &lt;body&gt;
-            &lt;div id="bar-graph"&gt;&lt;/div&gt;
-        &lt;/body&gt;
-    &lt;/html&gt;</pre>
-                <p>In our onload event, we use the createGraph function with the argument BarGraph to create an instance of the ever-changing bar graph.</p> 
-                
-                <pre class="prettyprint"> window.onload = function() {
-                var bar = dynamic3.createGraph('BarGraph')</pre>
-                <p>Setting attributes of our bar graph is made simple via Dynamic3 calls. For example, we can set the height and width by calling the specific library functions, setHeight and setWidth. The library function can be chained together for cleaner code.</p>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;script src="http://d3js.org/d3.v3.min.js" charset="utf-8"&gt;&lt;/script&gt;
+        &lt;script src="./local/path/to/dynamic3.js"&gt;&lt;/script&gt;
+        &lt;script src="./local/path/to/myGraph.js"&gt;&lt;/script&gt;
+        &lt;style&gt;
+            #bar-graph {
+                display:block;
+                height: 202px;
+                width: 402px;
+                border-style: solid;
+                border-color: black;
+                border-width: 1px; 
+                font-family: Helvetica, Arial;
+                font-weight: bold;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                font-size: 10px;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id="bar-graph"&gt;&lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</pre>
+                <p><b>The rest of our work will be done in a new JavaScript file we'll call myGraph.js.</b></p>
+                <p>In our onload event, we use the <i>createGraph</i> function with the argument <i>'BarGraph'</i> to create an instance of the ever-changing bar graph. <i>Note that for this tutorial, all of the code we write will be in this onload function. But this is not required to use dyanmic3.</i></p> 
                 
                 <pre class="prettyprint">
- bar.setWidth('250px')
-    .setHeight('250px')
-    .setDomain([0, 100])
-    .setPadding(10)
-    .setTransitionTime(400)
-    .setBackgroundColor('#496dff')
-    .setBorderColor('#2b2c2b')
-    .setBorderWidth(1)
-    .setOrientation('horizontal')</pre>
-                <p>When you’re done defining attributes, call insertIntoHTMLElement on your graph object, passing in the HTML element that will contain your graph. This will make your graph appear on your webpage.</p>
+window.onload = function() {
+    var bar = dynamic3.createGraph('BarGraph');
+}</pre>
+                <p>Setting attributes of our bar graph is made simple via Dynamic3 calls. For example, we can set the height and width by calling the specific library functions, <i>setHeight</i> and <i>setWidth</i>. The library function can be chained together for cleaner code.</p>
                 
-                <pre class="prettyprint"> bar.insertIntoHTMLElement(document.getElementById("bar-graph"));</pre>
+                <pre class="prettyprint">
+bar.setWidth('400px')
+   .setHeight('200px')
+   .setDomain([0, 100])
+   .setPadding(10)
+   .setTransitionTime(400)
+   .setBackgroundColor('#496dff')
+   .setBorderColor('#2b2c2b')
+   .setBorderWidth(1)
+   .setOrientation('horizontal')
+   .setText(getDataText); //we'll define getDataText later</pre>
+
+                <p>When you’re done defining attributes, call <i>insertIntoHTMLElement</i> on your graph object, passing in the HTML element that will contain your graph. This will make your graph appear on your webpage.</p>
                 
-                <p>We will simulate real-time data using the loopWithRandomDynamicData function below.</p>
+                <pre class="prettyprint">bar.insertIntoHTMLElement(document.getElementById("bar-graph"));</pre>
+                
+                <p>We will simulate real-time data using the <i>loopWithRandomDynamicData</i> function below.</p>
                 
                 <pre class="prettyprint">
 function loopWithRandomDynamicData() {
     bardata = [];
-    for (var i = 0; i &lt; 10; i += 1) {
-        bardata[i] = Math.random() * 100 | 0;
+    for (var i = 0; i &lt; 5; i += 1) {
+        bardata[i] = Math.floor(Math.random() * 100) | 0;
     }
     bar.update(bardata);
     var waitTime = Math.random() * 3000; // wait between 0 and 3 seconds for next data point.
@@ -95,12 +117,18 @@ function loopWithRandomDynamicData() {
     }
 
     loopWithRandomDynamicData(); //initial call to function
-    }</pre>
-                <p>The important thing to note in our function is the call to bar.update. Update takes in an array of data for the graph to display. The order of the data on the bar graph is displayed in the same order as the data in the array. Update should be called each time you want to update the data that is being displayed in the graph.
+}</pre>
 
-That’s it!</p>
+                <p>The important thing to note in our function is the call to <i>bar.update</i>. <i>Update</i> takes in an array of data for the graph to display. The order of the data on the bar graph is displayed in the same order as the data in the array. <i>Update</i> should be called each time you want to update the data that is being displayed in the graph.</p>
+
+                <p>Lastly, we define the function <i>getDataText</i> which feeds our graph data for the labels. In <i>getDataText</i> or any label-defining function, <i>data</i> which is the value from the array we passed into <i>update</i>. Since we only want to display that value on the label, we just return <i>data</i> in our function.</p>
+
+                <pre class="prettyprint">
+function getDataText(data) {
+        return data;
+}</pre>
+                <p>And that’s all there is to it!</p>
             </div>
         </div>
-
     </body>
 </html>
