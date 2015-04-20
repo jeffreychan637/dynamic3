@@ -154,6 +154,10 @@ dynamic3.BarGraph.prototype = {
         } else {
             console.error("Orientation must be the string 'horzontal' or 'vertical'");
         }
+
+        if (this.data)
+            this.update(this.data);
+
         return this;
     },
 
