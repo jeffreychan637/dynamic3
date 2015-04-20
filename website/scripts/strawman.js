@@ -36,9 +36,9 @@ window.onload = function() {
                         .setBorderColor('#2b2c2b')
                         .setBorderWidth(1);
 
-    bar.finishSetup(document.getElementById("bar-graph"));
-    graph.finishSetup(document.getElementById("circle-graph")); // This will connect our d3 graph with the dom element.
-    slidingBar.finishSetup(document.getElementById("animating-bar-graph")); // This will connect our d3 graph with the dom element.
+    bar.insertIntoHTMLElement(document.getElementById("bar-graph"));
+    graph.insertIntoHTMLElement(document.getElementById("circle-graph")); // This will connect our d3 graph with the dom element.
+    slidingBar.insertIntoHTMLElement(document.getElementById("animating-bar-graph")); // This will connect our d3 graph with the dom element.
     var orientationButton = $("#graph-orientation-dropdown");
     function updateOrientationButton() {
         orientationButton.html(bar.getOrientation() === "vertical" ? "Vertical" : "Horizontal");
@@ -55,10 +55,10 @@ window.onload = function() {
         updateOrientationButton();
     });
 
-    // For now, it may be simpler to impose the rule that all styles must be decided before this finishSetup function is called.
+    // For now, it may be simpler to impose the rule that all styles must be decided before this insertIntoHTMLElement function is called.
     // Like the above setup would maybe throw an error after we've already "finished our setup". I'm not sure if this will
     // actually be helpful or not until we actually start hacking on the library. But this is a simple enough
-    // constraint to begin with. After finishSetup, the only function you can call on a graph is 'update()'
+    // constraint to begin with. After insertIntoHTMLElement, the only function you can call on a graph is 'update()'
 
     // Get exhange rates from various currencies to 1 bitcoin.
     function getExchangeRates(callback) {
