@@ -12,5 +12,5 @@ The circle graph is a graph that displays a single value in the form of a circle
 ####The Ever-Changing Bar Graph
 The ever-changing bar graph is a bar graph where the values of categories change over time reflected in the ever-changing lengths of the bars in the graphs. It's useful for data where values change but the categories of those values always stay the same such as real-time basketball stats for different players in a specific game or the amount of votes for certain political candidates in an election.
 
-####The Expanding Bar Graph
-The expanding bar graph is a bar graph where the categories of the graph change over time, while the values do not. It's useful for data that's logged based on time such as the amount of steps taken every day by a user or the amount of requests a server receives every 20 seconds.
+####The Sliding Bar Graph
+The sliding bar graph is a bar graph where the categories of the graph change over time, while the values do not. It's useful for data that's logged based on time such as the amount of steps taken every day by a user or the amount of requests a server receives every 20 seconds.

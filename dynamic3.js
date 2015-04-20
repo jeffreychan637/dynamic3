@@ -134,6 +134,7 @@ dynamic3.CircleGraph.prototype = {
 
 dynamic3.BarGraph = function() {
     dynamic3.Graph.call(this);
+    this.options.vertical = true;
 }
 
 dynamic3.BarGraph.prototype = {
@@ -146,7 +147,6 @@ dynamic3.BarGraph.prototype = {
     },
     
     setBarGraphOrientation: function(orientation) {
-        this.options.vertical = true;
         if (orientation == "horizontal") {
             this.options.vertical = false;
         } else if (orientation != "vertical") {
