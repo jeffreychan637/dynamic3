@@ -31,9 +31,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li><a href="#cir-graph">Circle Graph</a></li>
-                <li><a href="#ever-changing-bar-graph">Ever-Changing Bar Graph</a></li>
-                <li><a href="#sliding-bar-graph">Sliding Bar Graph</a></li>
+                <li><a href="./index.html#cir-graph">Circle Graph</a></li>
+                <li><a href="./index#ever-changing-bar-graph">Ever-Changing Bar Graph</a></li>
+                <li><a href="./index#sliding-bar-graph">Sliding Bar Graph</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="http://www.github.com/jeffreychan637/dynamic3" target="_blank">View Code on Github</a></li>
@@ -50,45 +50,6 @@
             <p>Dynamic3 is a library built on top of <a href="http://d3js.org/">d3.js</a> that makes it simple and easy to build powerful, dynamic, animated graphs that feature real-time data.</p>
             <p><a class="btn btn-primary btn-lg" href="#" role="button">Download Dynamic3</a></p>
           </div>
-        </div>
-        
-        
-        <a name="cir-graph" class="anchor"></a>
-        <div>
-            <div class="container graph">
-                <h1 class="section-title">Circle Graph</h1>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div id="circle-graph" ></div>
-                    </div>
-                    <div class="col-md-6">
-                      <p class="graph-description">The circle graph focuses on a single value that determines the diameter of the circle. For this specific graph, the value is the size of the latest global Bitcoin transaction.</p>
-                      <p>
-                        <pre class="prettyprint code">
-&lt;div id="circle"&gt;&lt;/div&gt;
-&lt;script&gt;
-window.onload = function() {
-    var graph = dynamic3.createGraph('Circle')
-                        .setBackgroundColor('#ca454e')
-                        .setBorderColor('#8e3036')
-                        .setBorderWidth(4)
-                        .setWidth(500)
-                        .setHeight(500)
-                        .setDomain([0, 1])
-                        .setTransitionTime(400)
-                        .setText(getLabel)
-                        .setTextColor('black');
-    graph.finishSetup(document.getElementById("circle"));
-    while(true) {
-        var newValue = getNextBitcoinTransaction();
-        graph.update(newValue);
-    }
-}
-&lt;/script&gt;</pre>
-                     </p>
-                   </div>
-                  </div>
-            </div>
         </div>
         
 
@@ -152,42 +113,6 @@ window.onload = function() {
             </div>
         </div>
         
-
-        <a name="sliding-bar-graph" class="anchor"></a>
-        <div>
-            <div class="container graph">
-                <h1 class="section-title">Sliding Bar Graph</h1>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div id="animating-bar-graph"></div>
-                    </div>
-                    <div class="col-md-6">
-                      <p class="graph-description">The sliding bar graph is a bar graph where the categories of the graph change over time, while the values do not. This specific graph shows the latest global Bitcoin transactions.</p>
-                      <p>
-                        <pre class="prettyprint code">
-&lt;div id="expand-bar"&gt;&lt;/div&gt;
-&lt;script&gt;window.onload = function() {
-    var slidingBar = dynamic3.createGraph('SlidingBarGraph')
-                        .setWidth('496px')
-                        .setHeight('596px')
-                        .setDomain([0, 1])
-                        .setTransitionTime(400)
-                        .setBackgroundColor('#496dff')
-                        .setNumberOfBars(8)
-    graph.finishSetup(document.getElementById("expand-bar"));
-    while(true) {
-        var newValue = getNextBitcoinTransaction();
-        listOfAllBitcoinTransactions.unshift(
-            {val: newValue, uid: Date.now()}
-        );
-        graph.update(listOfAllBitcoinTransactions);
-    }
-}&lt;/script&gt;</pre>
-                     </p>
-                   </div>
-                  </div>
-            </div>
-        </div>
         
 
         <div class="jumbotron colored-blocks">
