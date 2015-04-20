@@ -123,30 +123,9 @@ window.onload = function() {
                       <div id="bar-graph" ></div>
                     </div>
                     <div class="col-md-6">
-                      <p class="graph-description">The ever-changing bar graph is a bar graph where the values of categories change over time reflected in the ever-changing lengths of the bars in the graphs. This specific graph shows the value of the latest global Bitcoin transaction in various currencies.</p>
-                      <p>
-                        <pre class="prettyprint code">
-&lt;div id="changing-bar"&gt;&lt;/div&gt;
-&lt;script&gt;
-window.onload = function() {
-   var bar = dynamic3.createGraph('Bar')
-                        .setWidth(500)
-                        .setHeight(600)
-                        .setDomain([0, 250])
-                        .setPadding(10)
-                        .setTransitionTime(400)
-                        .setBackgroundColor('#496dff')
-                        .setText(extractTextForCurrencies)
-                        .setTextColor('black');
-    graph.finishSetup(document.getElementById("changing-bar"));
-    while(true) {
-        var newValue = getNextBitcoinTransaction();
-        var newListofCurrencyValues = convertCurrencies(newValue);
-        bar.update(newListofCurrencyValues);
-    }
-}
-&lt;/script&gt;</pre>
-                     </p>
+                      <p class="graph-description">The ever-changing bar graph is a bar graph where the values of categories change over time reflected in the ever-changing lengths of the bars in the graphs. This specific graph shows the value of the latest global Bitcoin transaction in various currencies.
+                      </p>
+                      <p><a class="btn btn-primary btn-lg" href="./tutorial.html" role="button">View Tutorial</a></p>
                    </div>
                   </div>
             </div>
