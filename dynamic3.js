@@ -65,7 +65,7 @@ dynamic3.Graph.prototype = {
         chart.style('stroke-width', this.options.borderWidth);
     },
 
-    finishSetup: function(node) {
+    insertIntoHTMLElement: function(node) {
         this.ctx = d3.select(node)
             .append('svg:svg')
             .attr('width', parseFloat(this.options.width))
