@@ -31,8 +31,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li><a href="#cir-graph">Circle Graph</a></li>
                 <li><a href="#ever-changing-bar-graph">Ever-Changing Bar Graph</a></li>
+                <li><a href="#cir-graph">Circle Graph</a></li>
                 <li><a href="#sliding-bar-graph">Sliding Bar Graph</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
@@ -52,48 +52,8 @@
           </div>
         </div>
         
-        
-        <a name="cir-graph" class="anchor"></a>
-        <div>
-            <div class="container graph">
-                <h1 class="section-title">Circle Graph</h1>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div id="circle-graph" ></div>
-                    </div>
-                    <div class="col-md-6">
-                      <p class="graph-description">The circle graph focuses on a single value that determines the diameter of the circle. For this specific graph, the value is the size of the latest global Bitcoin transaction.</p>
-                      <p>
-                        <pre class="prettyprint code">
-&lt;div id="circle"&gt;&lt;/div&gt;
-&lt;script&gt;
-window.onload = function() {
-    var graph = dynamic3.createGraph('Circle')
-                        .setBackgroundColor('#ca454e')
-                        .setBorderColor('#8e3036')
-                        .setBorderWidth(4)
-                        .setWidth(500)
-                        .setHeight(500)
-                        .setDomain([0, 1])
-                        .setTransitionTime(400)
-                        .setText(getLabel)
-                        .setTextColor('black');
-    graph.insertIntoHTMLElement(document.getElementById("circle"));
-    while(true) {
-        var newValue = getNextBitcoinTransaction();
-        graph.update(newValue);
-    }
-}
-&lt;/script&gt;</pre>
-                     </p>
-                   </div>
-                  </div>
-            </div>
-        </div>
-        
-
         <a name="ever-changing-bar-graph" class="anchor"></a>
-        <div class="colored-blocks">
+        <div>
             <div class="container graph">
                 <h1 class="section-title">Ever-changing Bar Graph</h1>
                   <div class="row">
@@ -128,6 +88,44 @@ window.onload = function() {
                       <p class="graph-description">The ever-changing bar graph is a bar graph where the values of categories change over time reflected in the ever-changing lengths of the bars in the graphs. This specific graph shows the value of the latest global Bitcoin transaction in various currencies.
                       </p>
                       <p><a class="btn btn-primary btn-lg" href="./tutorial.html" role="button">View Tutorial</a></p>
+                   </div>
+                  </div>
+            </div>
+        </div>
+        
+        <a name="cir-graph" class="anchor"></a>
+        <div class="colored-blocks">
+            <div class="container graph">
+                <h1 class="section-title">Circle Graph</h1>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div id="circle-graph" ></div>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="graph-description">The circle graph focuses on a single value that determines the diameter of the circle. For this specific graph, the value is the size of the latest global Bitcoin transaction.</p>
+                      <p>
+                        <pre class="prettyprint code">
+&lt;div id="circle"&gt;&lt;/div&gt;
+&lt;script&gt;
+window.onload = function() {
+    var graph = dynamic3.createGraph('Circle')
+                        .setBackgroundColor('#ca454e')
+                        .setBorderColor('#8e3036')
+                        .setBorderWidth(4)
+                        .setWidth(500)
+                        .setHeight(500)
+                        .setDomain([0, 1])
+                        .setTransitionTime(400)
+                        .setText(getLabel)
+                        .setTextColor('black');
+    graph.insertIntoHTMLElement(document.getElementById("circle"));
+    while(true) {
+        var newValue = getNextBitcoinTransaction();
+        graph.update(newValue);
+    }
+}
+&lt;/script&gt;</pre>
+                     </p>
                    </div>
                   </div>
             </div>

@@ -123,6 +123,6 @@ pre.prettyprint {
     display:block; 
     height:500px;
     width:500px;
-    background-color:white;
+    background-color: inherit;
     margin-bottom: 10px;
 }
