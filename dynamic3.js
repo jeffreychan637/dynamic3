@@ -88,6 +88,8 @@ dynamic3.CircleGraph = function() {
 
 dynamic3.CircleGraph.prototype = {
     __proto__: dynamic3.Graph.prototype,
+    constructor: dynamic3.CircleGraph,
+
     update: function(data) {
         var oldData = this.data;
 
@@ -137,6 +139,7 @@ dynamic3.BarGraph = function() {
 
 dynamic3.BarGraph.prototype = {
     __proto__: dynamic3.Graph.prototype,
+    constructor: dynamic3.BarGraph,
     
     setPadding: function(padding) {
         this.options.padding = padding;
