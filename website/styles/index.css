@@ -99,6 +99,10 @@ pre.prettyprint {
     background-color: white;
 }
 
+.dropdown ul {
+    left: inherit;
+}
+
 #bar-graph, #animating-bar-graph {
     display:block;
     height:600px;
