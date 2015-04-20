@@ -72,6 +72,10 @@ pre.prettyprint {
     font-size: 72px;
 }
 
+.tutorial-title {
+    margin-top: 50px;
+}
+
 .download-text {
     font-size: 18px !important;
 }
