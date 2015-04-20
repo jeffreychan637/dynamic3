@@ -55,11 +55,6 @@ window.onload = function() {
         updateOrientationButton();
     });
 
-    // For now, it may be simpler to impose the rule that all styles must be decided before this insertIntoHTMLElement function is called.
-    // Like the above setup would maybe throw an error after we've already "finished our setup". I'm not sure if this will
-    // actually be helpful or not until we actually start hacking on the library. But this is a simple enough
-    // constraint to begin with. After insertIntoHTMLElement, the only function you can call on a graph is 'update()'
-
     // Get exhange rates from various currencies to 1 bitcoin.
     function getExchangeRates(callback) {
         /* Content security policy mess I don't feel like dealing with
