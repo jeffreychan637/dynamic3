@@ -9,7 +9,6 @@ code {
 
 
 .nav {
-/*    opacity: 50%;*/
     backface-visibility: visible;
 }
     
@@ -50,6 +49,10 @@ code {
     font-size: 20px;   
 }
 
+.tutorial-p {
+    margin-top: 50px;   
+}
+
 .code {
     text-align: left;
 }
@@ -81,9 +84,9 @@ pre.prettyprint {
 }
 
 .btn-primary {
-    background-color: #625DAA;
-    border-color: #5F3288;
-    background-image: none;
+    background-color: #625DAA !important;
+    border-color: #5F3288 !important;
+    background-image: none !important;
 }
 
 .btn-primary:hover {
@@ -99,8 +102,11 @@ pre.prettyprint {
 }
 
 .dropdown-toggle {
-    background-image: none;
-    background-color: white;
+    background-image: none !important;
+    background-color: #625DAA !important;
+    border-color: #5F3288 !important;
+    color: white !important;
+    text-shadow: none;
 }
 
 .dropdown ul {
