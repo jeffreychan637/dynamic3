@@ -146,13 +146,21 @@ dynamic3.BarGraph.prototype = {
         return this;
     },
     
-    setBarGraphOrientation: function(orientation) {
-        if (orientation == "horizontal") {
+    setOrientation: function(orientation) {
+        if (orientation === "horizontal") {
             this.options.vertical = false;
-        } else if (orientation != "vertical") {
-            console.error("Orientation must be horzontal or vertical");
+        } else if (orientation === "vertical") {
+            this.options.vertical = true;
+        } else {
+            console.error("Orientation must be the string 'horzontal' or 'vertical'");
         }
         return this;
+    },
+
+    getOrientation: function() {
+        if (this.options.vertical)
+            return "vertical";
+        return "horizontal";
     },
 
     update: function(data) {
@@ -201,17 +209,27 @@ dynamic3.BarGraph.prototype = {
             var textChart = this.ctx.selectAll('text')
                             .data(data);
 
-            var textX, textY;
+            var textX, textY, transform;
             if (this.options.vertical) {
                 textX = function(d, i) {
                     return i * width + (i + 1) * padding;
                 }
                 textY = padding;
+                transform = function(d, i) {
+                    var command = "translate(" + textX(d, i) + "," + textY + ")";
+                    command += "rotate(-90)";
+                    // Note that translations have x,y exchaged because we're rotated 90 degrees.
+                    command += "translate(" + (-textX(d, i) - canvasHeight + textY*2) + "," + (width/2) + ")";
+                    return command;
+                }
             } else {
                 textX = padding;
                 textY = function(d, i) {
                     return i * height + height/2 + (i + 1) * padding;
                     /* Use (i + 1) to account for initial padding. Add height/2 to put label in middle of bar. */
+                }
+                transform = function() {
+                    return "rotate(0)";
                 }
             }
 
@@ -219,6 +237,7 @@ dynamic3.BarGraph.prototype = {
                              .attr('x', textX)
                              .attr('y', textY)
                              .attr('fill', this.options.textColor || 'black')
+                             .attr("transform", transform)
                              .text(this.options.text);
 
             textChart.transition()
@@ -226,6 +245,7 @@ dynamic3.BarGraph.prototype = {
                      .attr('x', textX)
                      .attr('y', textY)
                      .attr('fill', this.options.textColor || 'black')
+                     .attr("transform", transform)
                      .text(this.options.text);
         }
 

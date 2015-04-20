@@ -35,19 +35,27 @@ window.onload = function() {
                         .setBackgroundColor('#496dff')
                         .setNumberOfBars(8)
                         //.setText(extractTextForCurrencies)
-                        //.setBorderColor('#2b2c2b')
-                        //.setBorderWidth(1)
+                        .setBorderColor('#2b2c2b')
+                        .setBorderWidth(1)
                         //.setTextColor('black');
 
     bar.finishSetup(document.getElementById("bar-graph"));
     graph.finishSetup(document.getElementById("circle-graph")); // This will connect our d3 graph with the dom element.
     slidingBar.finishSetup(document.getElementById("animating-bar-graph")); // This will connect our d3 graph with the dom element.
+    var orientationButton = $("#graph-orientation-dropdown");
+    function updateOrientationButton() {
+        orientationButton.html(bar.getOrientation() === "vertical" ? "Vertical" : "Horizontal");
+    }
+    updateOrientationButton();
 
     $("#switch-to-vertical").click(function() {
-        bar.setBarGraphOrientation("vertical")
+        bar.setOrientation("vertical");
+        updateOrientationButton();
     });
+
     $("#switch-to-horizontal").click(function() {
-        bar.setBarGraphOrientation("horizontal")
+        bar.setOrientation("horizontal");
+        updateOrientationButton();
     });
 
     // For now, it may be simpler to impose the rule that all styles must be decided before this finishSetup function is called.
