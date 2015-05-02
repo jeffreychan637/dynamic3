@@ -84,15 +84,16 @@ window.onload = function() {
         graph.setTextColor($(this).val());
     });
 
-    $("#slidingTime").change(function() {
-        slidingBar.setDomainStart($(this).val());
+    $("#slidingDS").change(function() {
+        slidingBar.setDomain([$(this).val(), maxBarGraphDomain]);
     });
     
-    $("#slidingTime").change(function() {
-        slidingBar.setDomainEnd($(this).val());
+    $("#slidingDE").change(function() {
+        maxBarGraphDomain = $(this).val();
+        slidingBar.setDomain([$("#slidingDS").val(), maxBarGraphDomain]);
     });
     
-    $("#slidingTime").change(function() {
+    $("#slidingTT").change(function() {
         slidingBar.setTransitionTime($(this).val());
     });
     
@@ -100,6 +101,9 @@ window.onload = function() {
         slidingBar.setBackgroundColor($(this).val());
     });
     
+    $("#slidingBN").change(function() {
+        slidingBar.setNumberOfBars($(this).val());
+    });
 
 
     // Get exhange rates from various currencies to 1 bitcoin.

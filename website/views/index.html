@@ -153,10 +153,10 @@ window.onload = function() {
     var slidingBar = dynamic3.createGraph('SlidingBarGraph')
                         .setWidth('496px')
                         .setHeight('496px')
-                        .setDomain([<input classs="number" id="slidingDomainStart" value="0">, <input class="number" id="slidingDomainEnd" value="1">])
-                        .setTransitionTime(<input class="number" id="slidingTime" value="400">)
-                        .setBackgroundColor(<input class="color" id="slidingBG" value='#496dff'>)
-                        .setNumberOfBars(8)
+                        .setDomain([<!--<input class="number" id="slidingDS" value="0">-->0, <!--<input class="number" id="slidingDE" value="1">-->1])
+                        .setTransitionTime(<input class="number" id="slidingTT" value="400">)
+                        .setBackgroundColor('<input class="color" id="slidingBG" value='#496dff'>')
+                        .setNumberOfBars(<input class="number" id="slidingBN" value='8'>)
     graph.insertIntoHTMLElement(document.getElementById("expand-bar"));
     while(true) {
         var newValue = getNextBitcoinTransaction();
