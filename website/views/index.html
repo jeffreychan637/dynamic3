@@ -153,9 +153,9 @@ window.onload = function() {
     var slidingBar = dynamic3.createGraph('SlidingBarGraph')
                         .setWidth('496px')
                         .setHeight('496px')
-                        .setDomain([0, 1])
-                        .setTransitionTime(400)
-                        .setBackgroundColor('#496dff')
+                        .setDomain([<input classs="number" id="slidingDomainStart" value="0">, <input class="number" id="slidingDomainEnd" value="1">])
+                        .setTransitionTime(<input class="number" id="slidingTime" value="400">)
+                        .setBackgroundColor(<input class="color" id="slidingBG" value='#496dff'>)
                         .setNumberOfBars(8)
     graph.insertIntoHTMLElement(document.getElementById("expand-bar"));
     while(true) {

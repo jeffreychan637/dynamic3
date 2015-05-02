@@ -65,6 +65,21 @@ window.onload = function() {
         console.log("changed");
     });
     
+    $("#slidingTime").change(function() {
+        slidingBar.setDomainStart($(this).val());
+    });
+    
+    $("#slidingTime").change(function() {
+        slidingBar.setDomainEnd($(this).val());
+    });
+    
+    $("#slidingTime").change(function() {
+        slidingBar.setTransitionTime($(this).val());
+    });
+    
+    $("#slidingBG").change(function() {
+        slidingBar.setBackgroundColor($(this).val());
+    });
     
 
 
