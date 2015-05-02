@@ -1,0 +1,16 @@
+.container {
+    margin-bottom: 25px;   
+}
+
+.doc-title {
+    margin-top: 50px;
+}
+
+.subtitle {
+    font-size: 40px;
+}
+
+p {
+    font-size: 16px;
+    margin: 0 0 15px;
+}
