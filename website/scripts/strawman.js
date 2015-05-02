@@ -54,6 +54,19 @@ window.onload = function() {
         bar.setOrientation("horizontal");
         updateOrientationButton();
     });
+    
+    $("#circleBG").change(function() {
+        graph.setBackgroundColor($(this).val());
+        console.log("changed");
+    });
+    
+    $("#circleBC").change(function() {
+        graph.setBackgroundColor($(this).val());
+        console.log("changed");
+    });
+    
+    
+
 
     // Get exhange rates from various currencies to 1 bitcoin.
     function getExchangeRates(callback) {

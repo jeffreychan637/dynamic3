@@ -140,3 +140,8 @@ pre.prettyprint {
     background-color: inherit;
     margin-bottom: 10px;
 }
+
+#circleBG {
+    width: 5em;   
+    
+}

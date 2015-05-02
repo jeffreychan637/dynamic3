@@ -113,15 +113,15 @@
 &lt;script&gt;
 window.onload = function() {
     var graph = dynamic3.createGraph('Circle')
-                        .setBackgroundColor('#ca454e')
-                        .setBorderColor('#8e3036')
-                        .setBorderWidth(4)
-                        .setWidth('496px')
-                        .setHeight('496px')
+                        .setBackgroundColor(<input id="circleBG" value="#ca454e">)
+                        .setBorderColor(<input id="circleBC" value="#8e3036">)
+                        .setBorderWidth(<input id="circleBW" value="4">)
+                        .setWidth(<input id="circleW" value="496">'px')
+                        .setHeight(<input id="circleH" value="496">'px')
                         .setDomain([0, 1])
                         .setTransitionTime(400)
-                        .setText(getLabel)
-                        .setTextColor('black');
+                        .setText(getLabel) //getLabel is a function
+                        .setTextColor(<input id="circleTC" value="black">);
     graph.insertIntoHTMLElement(document.getElementById("circle"));
     while(true) {
         var newValue = getNextBitcoinTransaction();
