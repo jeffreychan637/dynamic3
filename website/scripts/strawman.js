@@ -57,38 +57,47 @@ window.onload = function() {
     
     $("#circleBG").change(function() {
         graph.setBackgroundColor($(this).val());
-        console.log("changed");
     });
     
     $("#circleBC").change(function() {
         graph.setBorderColor($(this).val());
-        console.log("changed");
     });
     
     $("#circleBW").change(function() {
         graph.setBorderWidth($(this).val());
-        console.log("changed");
     });
-    
-     $("#circleDS").change(function() {
+
+    $("#circleDS").change(function() {
         graph.setDomain([$(this).val(), maxCircleGraphDomain]);
-        console.log("changed");
     });
     
-     $("#circleDE").change(function() {
+    $("#circleDE").change(function() {
         maxCircleGraphDomain = $(this).val();
         graph.setDomain([$("#circleDS").val(), maxCircleGraphDomain]);
-        console.log("changed");
     });
     
-     $("#circleTT").change(function() {
+    $("#circleTT").change(function() {
         graph.setTransitionTime($(this).val());
-        console.log("changed");
     });
     
-     $("#circleTC").change(function() {
+    $("#circleTC").change(function() {
         graph.setTextColor($(this).val());
-        console.log("changed");
+    });
+
+    $("#slidingTime").change(function() {
+        slidingBar.setDomainStart($(this).val());
+    });
+    
+    $("#slidingTime").change(function() {
+        slidingBar.setDomainEnd($(this).val());
+    });
+    
+    $("#slidingTime").change(function() {
+        slidingBar.setTransitionTime($(this).val());
+    });
+    
+    $("#slidingBG").change(function() {
+        slidingBar.setBackgroundColor($(this).val());
     });
     
 
