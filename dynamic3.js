@@ -127,6 +127,7 @@ dynamic3.CircleGraph.prototype = {
 
             textChart.transition()
                      .duration(this.options.transitionTime)
+                     .attr('fill', this.options.textColor || 'black')
                      .text(this.options.text);
         }
     }
