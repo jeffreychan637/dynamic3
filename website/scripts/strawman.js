@@ -1,7 +1,7 @@
 "use strict";
 
 window.onload = function() {
-    var maxCirculeGraphDomain = 1;
+    var maxCircleGraphDomain = 1;
     var maxBarGraphDomain = 250;
     var graph = dynamic3.createGraph('Circle')
                         .setBackgroundColor('#ca454e')
@@ -9,7 +9,7 @@ window.onload = function() {
                         .setBorderWidth(4)
                         .setWidth(500)
                         .setHeight(500)
-                        .setDomain([0, maxCirculeGraphDomain])
+                        .setDomain([0, maxCircleGraphDomain])
                         .setTransitionTime(400) // 200ms transition time from state to state.
                         .setText(function(d) { return d + " BTC"; })
                         .setTextColor('black');
@@ -61,10 +61,35 @@ window.onload = function() {
     });
     
     $("#circleBC").change(function() {
-        graph.setBackgroundColor($(this).val());
+        graph.setBorderColor($(this).val());
         console.log("changed");
     });
     
+    $("#circleBW").change(function() {
+        graph.setBorderWidth($(this).val());
+        console.log("changed");
+    });
+    
+     $("#circleDS").change(function() {
+        graph.setDomain([$(this).val(), maxCircleGraphDomain]);
+        console.log("changed");
+    });
+    
+     $("#circleDE").change(function() {
+        maxCircleGraphDomain = $(this).val();
+        graph.setDomain([$("#circleDS").val(), maxCircleGraphDomain]);
+        console.log("changed");
+    });
+    
+     $("#circleTT").change(function() {
+        graph.setTransitionTime($(this).val());
+        console.log("changed");
+    });
+    
+     $("#circleTC").change(function() {
+        graph.setTextColor($(this).val());
+        console.log("changed");
+    });
     
 
 
@@ -141,7 +166,7 @@ window.onload = function() {
 
     function updateGraphsWithLatestData(data) {
         var bitcoinValue = data.x.value * (1e-8);
-        graph.update(Math.min(bitcoinValue, maxCirculeGraphDomain));
+        graph.update(Math.min(bitcoinValue, maxCircleGraphDomain));
 
         
         var barData = [];

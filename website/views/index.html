@@ -113,16 +113,16 @@
 &lt;script&gt;
 window.onload = function() {
     var graph = dynamic3.createGraph('Circle')
-                        .setBackgroundColor(<input id="circleBG" value="#ca454e">)
-                        .setBorderColor(<input id="circleBC" value="#8e3036">)
-                        .setBorderWidth(<input id="circleBW" value="4">)
-                        .setWidth(<input id="circleW" value="496">'px')
-                        .setHeight(<input id="circleH" value="496">'px')
-                        .setDomain([0, 1])
-                        .setTransitionTime(400)
+                        .setBackgroundColor('<input id="circleBG" class="color" value="#ca454e">')
+                        .setBorderColor('<input id="circleBC" class="color" value="#8e3036">')
+                        .setBorderWidth(<input id="circleBW" class="number" value="4">)
+                        .setWidth('500px')
+                        .setHeight('500px')
+                        .setDomain([<input id="circleDS" class="number" value="0">, <input id="circleDE" class="number" value="1">])
+                        .setTransitionTime(<input id="circleTT" class="number" value="400">)
                         .setText(getLabel) //getLabel is a function
-                        .setTextColor(<input id="circleTC" value="black">);
-    graph.insertIntoHTMLElement(document.getElementById("circle"));
+                        .setTextColor(<!--<input id="circleTC" class="color" value="black">-->'black');
+    graph.insertIntoHTMLElement(document.getElementById('circle'));
     while(true) {
         var newValue = getNextBitcoinTransaction();
         graph.update(newValue);
