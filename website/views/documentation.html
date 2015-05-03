@@ -66,8 +66,16 @@ myGraph.<b>setBorderColor</b>(string color)</pre>
                 
                 <pre class="prettyprint">
 myGraph.<b>setBorderWidth</b>(int width)</pre>
-                <p>Sets the border width of the graph to <i>width</i>.</p>
+                <p>Sets the border width of the graph to <i>width</i>. <i>Width</i> must be a value in pixels.</p> 
                 
+                <pre class="prettyprint">
+myGraph.<b>setDomain</b>( [ int min, int max ] )</pre>
+                <p>Sets the min value to be displayed on the graph to <i>min</i> and the max value to <i>max</i>.</p>
+                <p>This is used to determine the scaling of the graph. See <a href="http://en.wikipedia.org/wiki/Domain_of_a_function">domain/range</a>.</p>
+                
+                <pre class="prettyprint">
+myGraph.<b>setHeight</b>(int height)</pre>
+                <p>Sets the height of the graph to <i>height</i>.</p>
                 
                 <h2 class="subtitle">Bar Graph Methods</h2>
             </div>
