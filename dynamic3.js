@@ -73,15 +73,6 @@ dynamic3.Graph.prototype = {
     }
 };
 
-//dynamic3.applyStylesToD3Graph = function(styles, fromOpts, ctx) {
-//  var aStyle
-//    , i
-//  for (i = 0; i < styles.length; i++) {
-//    aStyle = styles[i]
-//    ctx.style(aStyle, fromOpts[aStyle])
-//  }
-//}
-
 dynamic3.CircleGraph = function() { 
     dynamic3.Graph.call(this);
 }
@@ -127,6 +118,7 @@ dynamic3.CircleGraph.prototype = {
 
             textChart.transition()
                      .duration(this.options.transitionTime)
+                     .attr('fill', this.options.textColor || 'black')
                      .text(this.options.text);
         }
     }
@@ -285,22 +277,13 @@ dynamic3.SlidingBarGraph.prototype = {
         var height = parseFloat(this.options.height);
         var width = parseFloat(this.options.width);
         var barWidth;
-        //ensure separator isn't too big compared to barWidth. i.e barWidth must be at least 1 px
-        ;(function fixBarWidth() {
-            barWidth = (width - (separator * data.length)) / data.length;
-            barWidth = Math.floor(barWidth)
-            if (barWidth < 1) {
-                separator = Math.floor(separator/1.25);
-                fixBarWidth();
-            }
-        })();
-        
+        barWidth = width / data.length - separator - separator / data.length;
         var yScale = d3.scale.linear()
                    .domain(this.options.domain)
                    .range([height * 0.05, height]); //5 percent of height is minimum size
 
         var toAll = {
-            'x' : function(d, i) { return i*barWidth + i*separator;}
+            'x' : function(d, i) { return i*barWidth + (i+1)*separator;}
             , 'y' : function (d) { return height - yScale(d.val); }
             , 'width' : function () { return barWidth; }
             , 'height' : function(d) { return yScale(d.val) }
@@ -324,16 +307,56 @@ dynamic3.SlidingBarGraph.prototype = {
              .attr('x', toAll.x)
              .attr('y', toAll.y)
              .attr('height', toAll.height)
-              //'width' is necessary b/c when the graph is first started, we increase the number of data points.
+              //'width' is necessary to transtion b/c when the graph is first started, we increase the number of data points.
              .attr('width', toAll.width);
 
         chart.exit()
              .transition()
              .duration(this.options.transitionTime)
              .ease("linear")
-             .attr('x', function(d, i) { return toAll.x(d, data.length); }) //slide out to right
+             .attr('x', function(d, i) { return toAll.x(d, data.length + 1); }) //slide out to right
              .remove();
-       }
+
+        //if (this.options.text) {
+        //    var textChart = this.ctx.selectAll('text')
+        //                    .data(data);
+
+        //    var canvasHeight = parseFloat(this.options.height);
+        //    var textX, textY, transform;
+        //    textX = toAll.x;
+        //    //textY = toAll.y;
+        //    textY = canvasHeight;
+        //    transform = function(d, i) {
+        //        var command = "translate(" + textX(d, i) + "," + textY + ")";
+        //        command += "rotate(-90)";
+        //        // Note that translations have x,y exchaged because we're rotated 90 degrees.
+        //        command += "translate(" + (-textX(d, i) - canvasHeight + textY*2) + "," + (toAll.width()/2) + ")";
+        //        return command;
+        //    }
+
+        //    textChart.enter().insert('svg:text')
+        //                     .attr('x', textX)
+        //                     .attr('y', textY)
+        //                     .attr('fill', this.options.textColor || 'black')
+        //                     //.attr("transform", transform)
+        //                     .text(this.options.text);
+
+        //    textChart.transition()
+        //             .duration(this.options.transitionTime)
+        //             .attr('x', textX)
+        //             .attr('y', textY)
+        //             .attr('fill', this.options.textColor || 'black')
+        //             //.attr("transform", transform)
+        //             .text(this.options.text);
+
+        //    textChart.exit()
+        //             .transition()
+        //             .duration(this.options.transitionTime)
+        //             .ease("linear")
+        //             .attr('x', function(d, i) { return toAll.x(d, data.length); }) //slide out to right
+        //             .remove();
+        //}
+    }
 };
 
 dynamic3.__constructors = {

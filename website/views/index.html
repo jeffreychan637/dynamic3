@@ -122,12 +122,14 @@ window.onload = function() {
                         .setDomain([<input id="circleDS" class="number" value="0">, <input id="circleDE" class="number" value="1">])
                         .setTransitionTime(<input id="circleTT" class="number" value="400">)
                         .setText(getLabel) //getLabel is a function
-                        .setTextColor(<!--<input id="circleTC" class="color" value="black">-->'black');
+                        .setTextColor(<input id="circleTC" class="color" value="black"> <!--'black'-->);
     graph.insertIntoHTMLElement(document.getElementById('circle'));
-    while(true) {
+    function loop() {
         var newValue = getNextBitcoinTransaction();
         graph.update(newValue);
+        setTimeout(loop, 1000);
     }
+    loop();
 }
 &lt;/script&gt;</pre>
                      </p>
@@ -159,13 +161,15 @@ window.onload = function() {
                         .setBackgroundColor('<input class="color" id="slidingBG" value='#496dff'>')
                         .setNumberOfBars(<input class="number" id="slidingBN" value='8'>)
     graph.insertIntoHTMLElement(document.getElementById("expand-bar"));
-    while(true) {
+    function loop() {
         var newValue = getNextBitcoinTransaction();
-        listOfAllBitcoinTransactions.unshift(
+        listOfAllBitcoinTransactions.push(
             {val: newValue, uid: Date.now()}
         );
         graph.update(listOfAllBitcoinTransactions);
+        setTimeout(loop, 1000);
     }
+    loop();
 }&lt;/script&gt;</pre>
                      </p>
                    </div>
