@@ -48,9 +48,28 @@
         <div>
             <div class="container">
                 <h1 class="section-title doc-title">Documentation</h1>
+                
                 <h2 class="subtitle">Creating a Graph</h2>
-                <h2 class="subtitle">Shared Graph Attributes</h2>
-                <h2 class="subtitle">Bar Graph Attributes</h2>
+                <pre class="prettyprint">
+var myGraph = <b>dynamic3.createGraph</b>(string graphType)</pre>
+                <p>Creates a graph of type graph.</p>
+                <p>Valid choices are "Circle", "BarGraph", "SlidingBarGraph".</p>
+                
+                <h2 class="subtitle">Shared Graph Methods</h2>
+                <pre class="prettyprint">
+myGraph.<b>setBackgroundColor</b>(string color)</pre>
+                <p>Sets the background color of the graph to <i>color</i>.</p>
+                
+                <pre class="prettyprint">
+myGraph.<b>setBorderColor</b>(string color)</pre>
+                <p>Sets the border color of the graph to <i>color</i>.</p>
+                
+                <pre class="prettyprint">
+myGraph.<b>setBorderWidth</b>(int width)</pre>
+                <p>Sets the border width of the graph to <i>width</i>.</p>
+                
+                
+                <h2 class="subtitle">Bar Graph Methods</h2>
             </div>
         </div>
     </body>
