@@ -75,9 +75,32 @@ myGraph.<b>setDomain</b>( [ int min, int max ] )</pre>
                 
                 <pre class="prettyprint">
 myGraph.<b>setHeight</b>(int height)</pre>
-                <p>Sets the height of the graph to <i>height</i>.</p>
+                <p>Sets the height of the graph to <i>height</i>. <i>Height</i> must be a value in pixels.</p>
+                
+                <pre class="prettyprint">
+myGraph.<b>setText</b>(function getLabel)</pre>
+                <p>Sets the label(s) for the graph to the values returned by the function <i>getLabel</i>.</p>
+                <p>The label function takes in arguments <i>data</i> and <i>idx</i> where <i>data</i> is the specific value the graph is displaying and <i>idx</i> is the position of the value in the array (for bar graphs) passed through the <i>update</i> function.</p>
+                
+                <pre class="prettyprint">
+myGraph.<b>setTextColor</b>(string color)</pre>
+                <p>Sets the color of the text labels in the graph to <i>color</i>.</p>
+                
+                <pre class="prettyprint">
+myGraph.<b>setTransitionTime</b>(int time)</pre>
+                <p>Sets the transition time, in milliseconds, between displaying one set of values in the graph to another to <i>time</i>.</p>
+                
+                <pre class="prettyprint">
+myGraph.<b>setWidth</b>(int width)</pre>
+                <p>Sets the width of the graph to <i>width</i>. <i>Width</i> must be a value in pixels.</p>
                 
                 <h2 class="subtitle">Bar Graph Methods</h2>
+                
+                <pre class="prettyprint">
+myGraph.<b>setOrientation</b>(string orientation)</pre>
+                <p>Sets the orientation of the bar graph to <i>orientation</i>. Valid values are "horizontal" and "vertical".</p>
+                <p>Bar graphs are vertical by default.</p>
+                
             </div>
         </div>
     </body>
