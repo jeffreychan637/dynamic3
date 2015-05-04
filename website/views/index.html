@@ -122,7 +122,7 @@ window.onload = function() {
                         .setDomain([<input id="circleDS" class="number" value="0">, <input id="circleDE" class="number" value="1">])
                         .setTransitionTime(<input id="circleTT" class="number" value="400">)
                         .setText(getLabel) //getLabel is a function
-                        .setTextColor(<input id="circleTC" class="color" value="black"> <!--'black'-->);
+                        .setTextColor(<input id="circleTC" class="color" value="black">);
     graph.insertIntoHTMLElement(document.getElementById('circle'));
     function loop() {
         var newValue = getNextBitcoinTransaction();
