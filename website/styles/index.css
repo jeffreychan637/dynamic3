@@ -64,11 +64,24 @@ pre.prettyprint {
     text-align: center;   
 }
 
+.padding-around {
+    padding-top: 85px;
+    padding-bottom: 85px;
+}
+
 .colored-blocks {
     text-align: center;
     background: linear-gradient(#625DAA, #DA8CB9);
     color: white;
     margin-bottom: 0px;
+}
+
+.reverse-color {
+    background: linear-gradient(#DA8CB9, #625DAA);
+}
+
+.reduce-padding {
+    padding: 10px 0px;
 }
 
 .section-title {
