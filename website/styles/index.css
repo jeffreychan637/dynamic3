@@ -76,14 +76,6 @@ pre.prettyprint {
     margin-bottom: 0px;
 }
 
-.reverse-color {
-    background: linear-gradient(#DA8CB9, #625DAA);
-}
-
-.reduce-padding {
-    padding: 10px 0px;
-}
-
 .section-title {
     font-size: 72px;
 }
