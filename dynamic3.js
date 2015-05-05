@@ -66,6 +66,14 @@ dynamic3.Graph.prototype = {
     },
 
     insertIntoHTMLElement: function(node) {
+        if (this.options.transitionTime === undefined)
+            this.options.transitionTime = 300;
+        if (this.options.backgroundColor === undefined)
+            this.options.backgroundColor = 'black';
+
+        if (this.options.height === undefined || this.options.width === undefined)
+            throw new Error("Need height or width set before calling insertIntoHTMLElement().");
+
         this.ctx = d3.select(node)
             .append('svg:svg')
             .attr('width', parseFloat(this.options.width))
@@ -268,8 +276,10 @@ dynamic3.SlidingBarGraph.prototype = {
     },
 
     update: function(data) {
+        if (this.options.numberOfBars === undefined)
+            this.setNumberOfBars(10);
 
-        data = data.slice( -this.options.numberOfBars ) //grab the last (this.numberOfBars) number of points in our array
+        data = data.slice( -this.options.numberOfBars ) // grab the last (this.numberOfBars) number of points in our array
         data = data.reverse();
 
         var separator = 4;

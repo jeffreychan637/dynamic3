@@ -116,14 +116,14 @@
 &lt;script&gt;
 window.onload = function() {
     var graph = dynamic3.createGraph('Circle')
+                        .setWidth('500px')
+                        .setHeight('500px')
+                        .setText(getLabel) //getLabel is a function
                         .setBackgroundColor('<input id="circleBG" class="color" value="#ca454e">')
                         .setBorderColor('<input id="circleBC" class="color" value="#8e3036">')
                         .setBorderWidth(<input id="circleBW" class="number" value="4">)
-                        .setWidth('500px')
-                        .setHeight('500px')
                         .setDomain([<input id="circleDS" class="number" value="0">, <input id="circleDE" class="number" value="1">])
                         .setTransitionTime(<input id="circleTT" class="number" value="400">)
-                        .setText(getLabel) //getLabel is a function
                         .setTextColor(<input id="circleTC" class="color" value="black">);
     graph.insertIntoHTMLElement(document.getElementById('circle'));
     function loop() {

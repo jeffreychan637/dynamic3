@@ -54,6 +54,12 @@
 var myGraph = <b>dynamic3.createGraph</b>(string graphType)</pre>
                 <p>Creates a graph of type graph.</p>
                 <p>Valid choices are "Circle", "BarGraph", "SlidingBarGraph".</p>
+
+                <h2 class="subtitle">Displaying a graph</h2>
+                <pre class="prettyprint">
+myGraph.<b>insertIntoHTMLElement</b>(DOMElement element)</pre>
+                <p>Inserts the graph's  SVG canvas into the DOM element. This method needs to be called if you want to see your graph appear on the page.</p>
+                <p>Methods marked <b>[[Required]]</b> below must be called before calling <b>insertIntoHTMLElement</b></p>
                 
                 <h2 class="subtitle">Shared Graph Methods</h2>
                 <pre class="prettyprint">
@@ -69,12 +75,12 @@ myGraph.<b>setBorderWidth</b>(int width)</pre>
                 <p>Sets the border width of the graph to <i>width</i>. <i>Width</i> must be a value in pixels.</p> 
                 
                 <pre class="prettyprint">
-myGraph.<b>setDomain</b>( [ int min, int max ] )</pre>
+myGraph.<b>setDomain</b>( [ int min, int max ] ) [[Required]]</pre>
                 <p>Sets the min value to be displayed on the graph to <i>min</i> and the max value to <i>max</i>.</p>
                 <p>This is used to determine the scaling of the graph. See <a href="http://en.wikipedia.org/wiki/Domain_of_a_function">domain/range</a>.</p>
                 
                 <pre class="prettyprint">
-myGraph.<b>setHeight</b>(int height)</pre>
+myGraph.<b>setHeight</b>(int height) [[Required]]</pre>
                 <p>Sets the height of the graph to <i>height</i>. <i>Height</i> must be a value in pixels.</p>
                 
                 <pre class="prettyprint">
@@ -91,7 +97,7 @@ myGraph.<b>setTransitionTime</b>(int time)</pre>
                 <p>Sets the transition time, in milliseconds, between displaying one set of values in the graph to another to <i>time</i>.</p>
                 
                 <pre class="prettyprint">
-myGraph.<b>setWidth</b>(int width)</pre>
+myGraph.<b>setWidth</b>(int width) [[Required]]</pre>
                 <p>Sets the width of the graph to <i>width</i>. <i>Width</i> must be a value in pixels.</p>
                 
                 <h2 class="subtitle">Bar Graph Methods</h2>
