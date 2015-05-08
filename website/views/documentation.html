@@ -58,7 +58,22 @@ var myGraph = <b>dynamic3.createGraph</b>(string graphType)</pre>
                 <pre class="prettyprint">
 myGraph.<b>insertIntoHTMLElement</b>(DOMElement element)</pre>
                 <p>Inserts the graph's  SVG canvas into the DOM element. This method needs to be called if you want to see your graph appear on the page.</p>
-                <p>Methods marked <b>[[Required]]</b> below must be called before calling <b>insertIntoHTMLElement</b></p>
+                <p>Methods marked <b>Required</b> below must be called before calling <b>insertIntoHTMLElement</b></p>
+                
+                
+                <h2 class="subtitle">Updating a graph</h2>
+                <pre class="prettyprint">
+myGraph.<b>update</b>(newData)</pre>
+                <p>This method should be called each time the graph is going to be updated.</p>
+                <p>For the circle graph, <i>newData</i> is a single integer value.</p>
+                <p>For the ever-changing bar graph, <i>newData</i> is an ordered array of integer values.
+                   <br>
+                   The first value in the array is displayed in the left bar for graphs in vertical orientation and in the top bar for graphs in horizontal orientation.
+                </p>
+                <p>
+                    For the sliding bar graph, <i>newData</i> is an ordered array of objects. These objects has two properties.
+                    <br>
+                </p>
                 
                 <h2 class="subtitle">Shared Graph Methods</h2>
                 <p>Note that these methods can be called anytime after the graph has been created to update the graph.</p>
@@ -75,12 +90,12 @@ myGraph.<b>setBorderWidth</b>(int width)</pre>
                 <p>Sets the border width of the graph to <i>width</i>. <i>Width</i> must be a value in pixels.</p> 
                 
                 <pre class="prettyprint">
-myGraph.<b>setDomain</b>( [ int min, int max ] ) [[Required]]</pre>
+myGraph.<b>setDomain</b>( [ int min, int max ] )    <i>Required</i></pre>
                 <p>Sets the min value to be displayed on the graph to <i>min</i> and the max value to <i>max</i>.</p>
                 <p>This is used to determine the scaling of the graph. See <a href="http://en.wikipedia.org/wiki/Domain_of_a_function">domain/range</a>.</p>
                 
                 <pre class="prettyprint">
-myGraph.<b>setHeight</b>(int height) [[Required]]</pre>
+myGraph.<b>setHeight</b>(int height)    <i>Required</i></pre>
                 <p>Sets the height of the graph to <i>height</i>. <i>Height</i> must be a value in pixels.</p>
                 
                 <pre class="prettyprint">
@@ -97,19 +112,22 @@ myGraph.<b>setTransitionTime</b>(int time)</pre>
                 <p>Sets the transition time, in milliseconds, between displaying one set of values in the graph to another to <i>time</i>.</p>
                 
                 <pre class="prettyprint">
-myGraph.<b>setWidth</b>(int width) [[Required]]</pre>
+myGraph.<b>setWidth</b>(int width)    <i>Required</i></pre>
                 <p>Sets the width of the graph to <i>width</i>. <i>Width</i> must be a value in pixels.</p>
                 
-                <pre class="prettyprint">
-myGraph.<b>update</b>(newData)</pre>
-                <p></p>
-                
-                <h2 class="subtitle">Bar Graph Methods</h2>
+                <h2 class="subtitle">Ever-Changing Bar Graph Methods</h2>
                 
                 <pre class="prettyprint">
 myGraph.<b>setOrientation</b>(string orientation)</pre>
                 <p>Sets the orientation of the bar graph to <i>orientation</i>.</p>
                 <p>Valid values are "horizontal" and "vertical". <i>Bar graphs are vertical by default.</i></p>
+                
+                 <h2 class="subtitle">Sliding Bar Graph Methods</h2>
+                
+                <pre class="prettyprint">
+myGraph.<b>setNumberOfBars</b>(int numberOfBars)</pre>
+                <p>Sets the <i>maximum</i> number of bars to be displayed in the sliding bar graph to <i>numberOfBars</i>.</p>
+                <p>By default, the maximum number of bars displayed is 10.</p>
                 
             </div>
         </div>
