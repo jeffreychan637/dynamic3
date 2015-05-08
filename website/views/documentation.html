@@ -66,13 +66,21 @@ myGraph.<b>insertIntoHTMLElement</b>(DOMElement element)</pre>
 myGraph.<b>update</b>(newData)</pre>
                 <p>This method should be called each time the graph is going to be updated.</p>
                 <p>For the circle graph, <i>newData</i> is a single integer value.</p>
-                <p>For the ever-changing bar graph, <i>newData</i> is an ordered array of integer values.
-                   <br>
-                   The first value in the array is displayed in the left bar for graphs in vertical orientation and in the top bar for graphs in horizontal orientation.
+                <p>For the ever-changing bar graph, <i>newData</i> is an ordered array of integer values.</p>
+                <p> The first value in the array is displayed in the left bar for graphs in vertical orientation and in the top bar for graphs in horizontal orientation.  </p>
+                <p>
+                    For the sliding bar graph, <i>newData</i> is an ordered array of objects. You should always provide the same array and add new values
+                    to the array by pushing the values on to the end of the array. Never remove elements from this array. 
                 </p>
                 <p>
-                    For the sliding bar graph, <i>newData</i> is an ordered array of objects. These objects has two properties.
-                    <br>
+                    The objects in the array have these two properties:
+                </p>
+                <p>
+                    <b>val</b>: This property is an integer value representing the actual data point.
+                </p>
+                <p>
+                    <b>uid</b>: This property is any value that uniquely identifies the data point. This is needed for animating the graph. 
+                    A common <b>uid</b> to use is <span style="font-family:courier;"><b>Date.now()</b></span>
                 </p>
                 
                 <h2 class="subtitle">Shared Graph Methods</h2>
