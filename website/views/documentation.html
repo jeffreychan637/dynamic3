@@ -57,7 +57,7 @@ var myGraph = <b>dynamic3.createGraph</b>(string graphType)</pre>
                 <h2 class="subtitle">Displaying a graph</h2>
                 <pre class="prettyprint">
 myGraph.<b>insertIntoHTMLElement</b>(DOMElement element)</pre>
-                <p>Inserts the graph's  SVG canvas into the DOM element. This method needs to be called if you want to see your graph appear on the page.</p>
+                <p>Inserts the graph's  SVG canvas into the DOM element. This method needs to be called to make the graph appear on the page.</p>
                 <p>Methods marked <b>Required</b> below must be called before calling <b>insertIntoHTMLElement</b></p>
                 
                 
@@ -65,18 +65,23 @@ myGraph.<b>insertIntoHTMLElement</b>(DOMElement element)</pre>
                 <pre class="prettyprint">
 myGraph.<b>update</b>(newData)</pre>
                 <p>This method should be called each time the graph is going to be updated.</p>
-                <p>For the circle graph, <i>newData</i> is a single integer value.</p>
-                <p>For the ever-changing bar graph, <i>newData</i> is an ordered array of integer values.</p>
-                <p> The first value in the array is displayed in the left bar for graphs in vertical orientation and in the top bar for graphs in horizontal orientation.  </p>
+                <p>For the <b>circle graph</b>, <i>newData</i> is a single integer value.</p>
                 <p>
-                    For the sliding bar graph, <i>newData</i> is an ordered array of objects. You should always provide the same array and add new values
-                    to the array by pushing the values on to the end of the array. Never remove elements from this array. 
+                    For the <b>ever-changing bar graph</b>, <i>newData</i> is an ordered array of integer values.
+                    <br>
+                    The first value in the array is displayed in the left bar for graphs in vertical orientation and in the top bar for graphs in horizontal orientation.
                 </p>
-                <p> The objects in the array have these two properties: </p>
-                <p> <b>val</b>: This property is a number that represents the actual data point. </p>
                 <p>
+                    For the <b>sliding bar graph</b>, <i>newData</i> is an ordered array of objects.
+                    <br>Always provide the same array and add new values to the array by pushing the values on to the end of the array. Elements should <i>never</i> be removed from this array.
+                </p>
+                <p> 
+                    The objects in the array have two properties:
+                    <br>
+                    <b>val</b>: This property is a number that represents the actual data point.
+                    <br>
                     <b>uid</b>: This property is any value that uniquely identifies the data point. This is needed for animating the graph. 
-                    A common <b>uid</b> to use is <span style="font-family:courier;"><b>Date.now()</b></span>
+                    A common <b>uid</b> to use is <span style="font-family:courier;"><b>Date.now()</b>.</span>
                 </p>
                 
                 <h2 class="subtitle">Shared Graph Methods</h2>
