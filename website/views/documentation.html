@@ -55,6 +55,7 @@ var myGraph = <b>dynamic3.createGraph</b>(string graphType)</pre>
                 <p>Valid choices are "Circle", "BarGraph", "SlidingBarGraph".</p>
                 
                 <h2 class="subtitle">Shared Graph Methods</h2>
+                <p>Note that these methods can be called anytime after the graph has been created to update the graph.</p>
                 <pre class="prettyprint">
 myGraph.<b>setBackgroundColor</b>(string color)</pre>
                 <p>Sets the background color of the graph to <i>color</i>.</p>
@@ -92,6 +93,10 @@ myGraph.<b>setTransitionTime</b>(int time)</pre>
                 <pre class="prettyprint">
 myGraph.<b>setWidth</b>(int width)</pre>
                 <p>Sets the width of the graph to <i>width</i>. <i>Width</i> must be a value in pixels.</p>
+                
+                <pre class="prettyprint">
+myGraph.<b>update</b>(newData)</pre>
+                <p></p>
                 
                 <h2 class="subtitle">Bar Graph Methods</h2>
                 
