@@ -34,6 +34,7 @@ window.onload = function() {
                         .setBackgroundColor('#496dff')
                         .setNumberOfBars(8)
                         .setBorderColor('#2b2c2b')
+                        .setText(function(d) { return /*d.val +*/ " BTC"; })
                         .setBorderWidth(1);
 
     bar.insertIntoHTMLElement(document.getElementById("bar-graph"));
