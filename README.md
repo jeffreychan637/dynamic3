@@ -1,6 +1,7 @@
 #Dynamic3
 
 ###[View Demo](http://jeffreychan637.github.io)
+###[View Documentation](http://jeffreychan637.github.io/documentation.html)
 
 Dynamic3 is a library built on top of [d3.js](http://d3js.org/) that makes it simple and easy to build powerful, dynamic, animated graphs that feature real-time data.
 
